@@ -1852,7 +1852,10 @@ function initChatbot() {
         body: JSON.stringify({ messages })
       });
 
-      if (!res.ok) throw new Error(`API error: ${res.status}`);
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || `API error: ${res.status}`);
+      }
       const data = await res.json();
       const botResponse = data.choices?.[0]?.message?.content || (currentLang === 'ar' ? 'عذراً، لم أفهم سؤالك.' : 'Sorry, I did not understand.');
 

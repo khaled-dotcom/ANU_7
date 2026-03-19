@@ -1,10 +1,10 @@
-module.exports = async function(req, res) {
+module.exports = async function (req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const { messages } = req.body;
-  
+
   if (!messages) {
     return res.status(400).json({ error: 'Messages are required' });
   }
@@ -40,6 +40,6 @@ module.exports = async function(req, res) {
 
   } catch (error) {
     console.error('Chat endpoint error:', error);
-    return res.status(500).json({ error: 'Failed to process chat request' });
+    return res.status(500).json({ error: error.message || 'Failed to process chat request' });
   }
 }
