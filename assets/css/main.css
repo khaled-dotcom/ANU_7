@@ -127,6 +127,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .navbar-logo img {
@@ -2017,8 +2018,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
   }
 
   .navbar-title {
-    font-size: 0.9rem;
-    max-width: 120px;
+    font-size: 0.95rem;
+    max-width: 180px;
+    flex-shrink: 1;
   }
 
   .hero {
@@ -2493,8 +2495,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
   .btn-pay-cta { width: 100%; justify-content: center; }
 
-  .news-ticker { top: 60px; }
-  .hero { padding-top: calc(60px + 36px + 2rem) !important; }
+  .news-ticker { 
+    top: auto;
+    bottom: calc(60px + env(safe-area-inset-bottom));
+    z-index: 998;
+  }
+  .hero { padding-top: 5rem !important; }
 }
 
 @media (min-width: 640px) and (max-width: 1023px) {
@@ -2949,9 +2955,10 @@ button { font-family: inherit; cursor: pointer; border: none; }
   }
 
   .navbar-logo {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     display: flex !important;
+    margin-inline-start: 0.5rem;
   }
 
   /* MOBILE MENU DRAWER */
