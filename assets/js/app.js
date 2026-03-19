@@ -984,25 +984,19 @@ function initChatbot() {
 }
 
 async function fetchGroq(userMessage) {
-  const config = typeof CONFIG !== 'undefined' ? CONFIG : {};
-  if (!config.GROQ_API_KEY || config.GROQ_API_KEY === 'YOUR_GROQ_API_KEY_HERE') {
-    throw new Error('API key not configured');
-  }
-
   const systemPrompt = currentLang === 'ar'
-    ? 'أنت مساعد طلاب جامعة الإسكندرية الأهلية. أجب عن أسئلة الطلاب حول الأنشطة، الفعاليات، الأندية، الفرق الرياضية وخدمات الطلاب. كن مفيداً وودوداً ومحترفاً.'
-    : 'You are the student assistant for Alexandria National University. Answer questions about activities, events, clubs, sports teams and student services. Be helpful, friendly and professional.';
+    ? 'أنت مساعد طلاب جامعة الإسكندرية الأهلية. أجب بإيجاز وبدون استخدام تنسيقات النجمة (*). أسألني عن الأنشطة، الفعاليات، الأندية، الفرق الرياضية وخدمات الطلاب. كن مفيداً وودوداً ومحترفاً.'
+    : 'You are the student assistant for Alexandria National University. Answer questions concisely without using asterisk formatting. Answer questions about activities, events, clubs, sports teams and student services. Be helpful, friendly and professional.';
 
   const messages = [
     { role: 'system', content: systemPrompt },
     ...chatbotHistory.slice(-10)
   ];
 
-  const apiUrl = config.GROQ_API_URL || 'https://api.groq.com/openai/v1/chat/completions';
-  const res = await fetch(apiUrl, {
+  const res = await fetch('/api/chat', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${config.GROQ_API_KEY}` },
-    body: JSON.stringify({ model: config.GROQ_MODEL || 'openai/gpt-oss-120b', messages })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages })
   });
 
   if (!res.ok) throw new Error(`API error: ${res.status}`);
