@@ -23,7 +23,7 @@ module.exports = async function (req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'llama3-8b-8192', // Change model here if needed
+        model: 'llama-3.1-8b-instant', // Upgraded model since llama3-8b-8192 was decommissioned
         messages: messages,
         temperature: 0.7,
         max_tokens: 500
