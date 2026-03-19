@@ -1216,11 +1216,9 @@ function initEvents() {
     let html = '';
     let savedHtml = '';
 
-    const isMobile = window.innerWidth <= 768;
-    const aosAttr = isMobile ? '' : 'data-aos="fade-up"';
-
     const renderCard = (ev, enforceSaved = false) => {
       const isSaved = savedIds.includes(String(ev.id));
+      // if enforceSaved is true, we only render if it's saved OR we are rendering the general grid
       const saveIconClass = isSaved ? 'fas fa-heart' : 'far fa-heart';
       const savedClass = isSaved ? 'saved' : '';
 
@@ -1231,6 +1229,7 @@ function initEvents() {
       const isPast = ev.isPast;
       const pastLabel = currentLang === 'ar' ? 'فعالية سابقة' : 'Past event';
       
+      // Calculate capacity percentage (simulated if not available)
       const registered = Math.floor(ev.capacity * (0.4 + Math.random() * 0.5));
       const perc = Math.round((registered / ev.capacity) * 100);
       const isCritical = perc > 85;
@@ -1239,7 +1238,7 @@ function initEvents() {
       const waUrl = `https://wa.me/?text=${waText}`;
 
       return `
-        <article class="event-card" ${aosAttr}>
+        <article class="event-card" data-aos="fade-up">
           <button class="btn-save-event ${savedClass}" onclick="toggleSaveEvent('${ev.id}')" aria-label="Save Event">
             <i class="${saveIconClass}"></i>
           </button>
@@ -1286,17 +1285,13 @@ function initEvents() {
       `;
     };
 
-    if (isMobile) {
+    // Show skeletons first
+    grid.innerHTML = Array(3).fill(0).map(() => `<div class="event-card-skeleton skeleton"></div>`).join('');
+    
+    setTimeout(() => {
       grid.innerHTML = visible.map(ev => renderCard(ev)).join('');
-      try { AOS?.refresh(); } catch(e) {}
-    } else {
-      // Show skeletons first
-      grid.innerHTML = Array(3).fill(0).map(() => `<div class="event-card-skeleton skeleton"></div>`).join('');
-      setTimeout(() => {
-        grid.innerHTML = visible.map(ev => renderCard(ev)).join('');
-        try { AOS?.refresh(); } catch(e) {}
-      }, 600);
-    }
+      AOS?.refresh();
+    }, 600);
 
     eventsData.forEach(ev => {
       const title = currentLang === 'ar' ? ev.titleAr : ev.titleEn;
@@ -1340,11 +1335,9 @@ function initEvents() {
 
     if (!upcoming.length) { calendar.innerHTML = ''; return; }
 
-    const isMobile = window.innerWidth <= 768;
-    const aosAttr = isMobile ? '' : 'data-aos="fade-up"';
     const title = currentLang === 'ar' ? 'تقويم الفعاليات' : 'Events Calendar';
     calendar.innerHTML = `
-      <div class="calendar-wrapper" ${aosAttr}>
+      <div class="calendar-wrapper" data-aos="fade-up">
         <div class="calendar-header-styled">
           <h3><i class="far fa-calendar-check"></i> ${title}</h3>
           <p>${currentLang === 'ar' ? 'أهم المواعيد القادمة في حرم الجامعة' : 'Key upcoming dates on campus'}</p>
@@ -1483,29 +1476,22 @@ function initGallery() {
   let currentImgIdx = 0;
 
   function renderGallery() {
-    const isMobile = window.innerWidth <= 768;
-    const aosAttr = isMobile ? '' : 'data-aos="fade-up"';
-    const visible = galleryShowAll ? galleryImages : galleryImages.slice(0, PAGE_SIZE);
-    const renderItems = () => {
+    // Show skeletons first
+    grid.innerHTML = Array(6).fill(0).map(() => `<div class="gallery-skeleton skeleton"></div>`).join('');
+    
+    setTimeout(() => {
+      const visible = galleryShowAll ? galleryImages : galleryImages.slice(0, PAGE_SIZE);
       grid.innerHTML = visible.map((img, i) => {
         const title = currentLang === 'ar' ? img.titleAr : img.titleEn;
         return `
-          <div class="gallery-item" ${aosAttr} onclick="openLightbox(${i})">
+          <div class="gallery-item" data-aos="fade-up" onclick="openLightbox(${i})">
             <img src="${img.thumb}" alt="${title}" loading="lazy" />
             <div class="gallery-overlay"><span>${title}</span></div>
           </div>
         `;
       }).join('');
-      try { AOS?.refresh(); } catch(e) {}
-    };
-
-    if (isMobile) {
-      renderItems();
-    } else {
-      // Show skeletons first
-      grid.innerHTML = Array(6).fill(0).map(() => `<div class="gallery-skeleton skeleton"></div>`).join('');
-      setTimeout(renderItems, 600);
-    }
+      AOS?.refresh();
+    }, 600);
   }
 
   window.openLightbox = function(idx) {
