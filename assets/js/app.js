@@ -964,6 +964,7 @@ function initChatbot() {
       messagesEl.appendChild(botDiv);
       chatbotHistory.push({ role: 'assistant', content: response });
     } catch (err) {
+      console.error('Chatbot API fetch error:', err);
       loadingDiv.remove();
       const errDiv = document.createElement('div');
       errDiv.className = 'chat-msg bot';
