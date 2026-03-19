@@ -2499,11 +2499,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
   .btn-pay-cta { width: 100%; justify-content: center; }
 
   .news-ticker { 
-    top: auto;
-    bottom: calc(60px + env(safe-area-inset-bottom));
-    z-index: 998;
+    display: none !important; 
   }
   .hero { padding-top: 5rem !important; }
+  section { padding: 1.5rem 0 !important; }
+  .section-header { margin-bottom: 1.5rem !important; }
 }
 
 @media (min-width: 640px) and (max-width: 1023px) {
@@ -2978,8 +2978,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
   /* ---- Hero ---- */
   .hero {
-    padding: 6rem 1rem 3rem !important;
+    padding: 5.5rem 1rem 2rem !important;
     min-height: auto;
+  }
+  
+  /* Force AOS elements to be visible if JS is disabled on mobile */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: none !important;
   }
 
   .hero-title {
