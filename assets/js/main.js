@@ -1745,16 +1745,42 @@ function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateForm(form)) return;
 
-    const successDiv = document.createElement('div');
-    successDiv.className = 'form-success';
-    successDiv.textContent = i18n[currentLang]?.services?.success || 'تم الإرسال بنجاح';
-    form.appendChild(successDiv);
+    const data = {
+      name: form.name?.value || '',
+      email: form.email?.value || '',
+      subject: form.subject?.value || '',
+      message: form.message?.value || ''
+    };
+
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = currentLang === 'ar' ? 'جاري الإرسال...' : 'Sending...'; }
+
+    try {
+      await fetch('https://ghalwashnn.app.n8n.cloud/webhook/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch (err) {
+      console.warn('n8n webhook error (non-blocking):', err);
+    }
+
+    // Show success regardless (even if webhook fails, don't block the user)
+    let successDiv = form.querySelector('.form-success');
+    if (!successDiv) {
+      successDiv = document.createElement('div');
+      successDiv.className = 'form-success';
+      form.appendChild(successDiv);
+    }
+    successDiv.textContent = i18n[currentLang]?.services?.success || 'تم الإرسال بنجاح! سنتواصل معك قريباً.';
+    successDiv.style.display = 'block';
     form.reset();
-    setTimeout(() => successDiv.remove(), 3000);
+    if (btn) { btn.disabled = false; btn.textContent = i18n[currentLang]?.contact?.send || 'إرسال'; }
+    setTimeout(() => { successDiv.style.display = 'none'; }, 4000);
   });
 }
 
