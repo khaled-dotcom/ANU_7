@@ -2027,7 +2027,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
   }
 
   .hero {
-    padding: 6rem 1rem 3rem;
+    padding: 5rem 1rem 1.5rem !important;
+  }
+  
+  .section {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .section-header {
+    margin-bottom: 1.25rem !important;
   }
 
   .hero-title {
@@ -2978,7 +2986,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
   /* ---- Hero ---- */
   .hero {
-    padding: 5.5rem 1rem 2rem !important;
+    padding: 5rem 1rem 1.5rem !important;
     min-height: auto;
   }
   
