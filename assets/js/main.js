@@ -1894,7 +1894,12 @@ document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 // ========== AOS ==========
 function initAOS() {
   if (typeof AOS !== 'undefined') {
-    AOS.init({ duration: 600, offset: 80, once: true });
+    AOS.init({ 
+      duration: 600, 
+      offset: 80, 
+      once: true,
+      disable: 'mobile' 
+    });
   }
 }
 

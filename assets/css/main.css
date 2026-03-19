@@ -91,8 +91,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 10005;
+  background: var(--primary);
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   color: var(--secondary);
   padding: 0.75rem 1.5rem;
   transition: background var(--transition), box-shadow var(--transition);
@@ -2737,73 +2740,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
   .map-popover p { font-size: 0.75rem; }
 }
 
-/* ====================================================
-   NEWS TICKER
-   ==================================================== */
-.news-ticker {
-  display: flex;
-  align-items: center;
-  background: var(--accent);
-  color: var(--gray-900);
-  overflow: hidden;
-  white-space: nowrap;
-  height: 40px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  margin-top: var(--navbar-height, 64px);
-}
-
-.ticker-label {
-  flex-shrink: 0;
-  font-weight: 700;
-  font-size: 0.78rem;
-  padding: 0 0.75rem;
-  background: rgba(0,0,0,0.12);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  white-space: nowrap;
-}
-
-.ticker-track {
-  flex: 1;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.ticker-content {
-  display: inline-flex;
-  animation: ticker-scroll 40s linear infinite;
-  gap: 3rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-@keyframes ticker-scroll {
-  0%   { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
-}
-
-.ticker-close {
-  flex-shrink: 0;
-  padding: 0 0.75rem;
-  background: none;
-  font-size: 0.85rem;
-  color: var(--gray-900);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  opacity: 0.7;
-  transition: opacity var(--transition);
-}
-
-.ticker-close:hover { opacity: 1; }
 
 /* ====================================================
    MOBILE BOTTOM NAV
