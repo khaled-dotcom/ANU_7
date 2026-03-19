@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>دفع رسوم الأنشطة | اتحاد طلاب جامعة الإسكندرية الأهلية</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="description" content="صفحة دفع رسوم الأنشطة الطلابية لاتحاد طلاب جامعة الإسكندرية الأهلية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/payment.css" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/images/571217735_821161784183083_11823729130709533_n.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="pay-header">
+    <div class="pay-header-inner">
+      <a href="index.html" class="pay-back-btn">
+        <i class="fas fa-arrow-right"></i>
+        الرئيسية
+      </a>
+      <div class="pay-logo">
+        <img src="assets/images/571217735_821161784183083_11823729130709533_n.jpg" alt="شعار الاتحاد" onerror="this.style.display='none'" />
+        <span>بوابة الدفع الآمن</span>
+      </div>
+      <div class="pay-secure-badge">
+        <i class="fas fa-lock"></i>
+        <span>آمن ومشفر</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Steps -->
+  <div class="pay-progress">
+    <div class="progress-step active" id="step1Indicator">
+      <div class="step-circle">1</div>
+      <span>بيانات الطالب</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="step2Indicator">
+      <div class="step-circle">2</div>
+      <span>تفاصيل الدفع</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step" id="step3Indicator">
+      <div class="step-circle">3</div>
+      <span>التأكيد</span>
+    </div>
+  </div>
+
+  <main class="pay-main">
+    <div class="pay-container">
+
+      <!-- Left: Form Column -->
+      <div class="pay-form-col">
+
+        <!-- Step 1: Student Info -->
+        <div class="pay-card" id="step1" >
+          <div class="pay-card-header">
+            <i class="fas fa-user-graduate"></i>
+            <h2>بيانات الطالب</h2>
+          </div>
+          <div class="pay-card-body">
+
+            <div class="form-group">
+              <label>اختر الفعالية <span class="required">*</span></label>
+              <select id="activitySelect" class="pay-select" required>
+                <option value="" disabled selected>اختر الفعالية...</option>
+                <option value="footb" data-price="50">دورة خماسيات كرة القدم الرمضانية — 50 جنيه</option>
+                <option value="padel" data-price="80">مسابقة البادل — 80 جنيه</option>
+                <option value="iftar" data-price="100">حفل الإفطار الرمضاني — 100 جنيه</option>
+                <option value="marathon" data-price="30">ماراثون الجامعة — 30 جنيه</option>
+                <option value="art" data-price="20">معرض الفنون الطلابية — 20 جنيه</option>
+                <option value="other" data-price="50">فعالية أخرى — 50 جنيه</option>
+              </select>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label>الاسم الكامل <span class="required">*</span></label>
+                <input type="text" id="studentName" class="pay-input" placeholder="مثال: أحمد محمد علي" required />
+              </div>
+              <div class="form-group">
+                <label>الرقم الجامعي <span class="required">*</span></label>
+                <input type="text" id="studentId" class="pay-input" placeholder="مثال: 20231234" required />
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label>الكلية <span class="required">*</span></label>
+                <select id="faculty" class="pay-select" required>
+                  <option value="" disabled selected>اختر الكلية...</option>
+                  <option>طب</option>
+                  <option>هندسة</option>
+                  <option>علوم</option>
+                  <option>حاسبات ومعلومات</option>
+                  <option>اقتصاد وعلوم سياسية</option>
+                  <option>الصيدلة</option>
+                  <option>طب أسنان</option>
+                  <option>إدارة أعمال</option>
+                  <option>تمريض</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>السنة الدراسية <span class="required">*</span></label>
+                <select id="year" class="pay-select" required>
+                  <option value="" disabled selected>السنة...</option>
+                  <option>أولى</option>
+                  <option>ثانية</option>
+                  <option>ثالثة</option>
+                  <option>رابعة</option>
+                  <option>خامسة</option>
+                  <option>سادسة</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>رقم الهاتف <span class="required">*</span></label>
+              <input type="tel" id="studentPhone" class="pay-input" placeholder="01xxxxxxxxx" required />
+            </div>
+
+            <div class="form-group">
+              <label>البريد الإلكتروني</label>
+              <input type="email" id="studentEmail" class="pay-input" placeholder="example@student.edu" />
+            </div>
+
+            <button class="btn-next" id="toStep2Btn" onclick="goToStep2()">
+              متابعة للدفع
+              <i class="fas fa-arrow-left"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Payment Method -->
+        <div class="pay-card hidden" id="step2">
+          <div class="pay-card-header">
+            <i class="fas fa-credit-card"></i>
+            <h2>طريقة الدفع</h2>
+          </div>
+          <div class="pay-card-body">
+
+            <!-- Payment Method Tabs (InstaPay only) -->
+            <div class="pay-method-tabs">
+              <button class="method-tab active" id="tabInstapay">
+                <i class="fas fa-mobile-alt"></i>
+                InstaPay
+              </button>
+            </div>
+
+            <!-- InstaPay -->
+            <div id="methodInstapay" class="pay-method-form hidden">
+              <div class="instapay-info">
+                <div class="instapay-qr">
+                  <!-- Static QR code generated from the InstaPay number -->
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=01148776034"
+                       alt="InstaPay QR for 01148776034"
+                       style="width:180px;height:180px;border-radius:0.75rem;background:#fff;padding:0.5rem;" />
+                </div>
+                <p>اسكن كود QR أو حوّل عبر تطبيق InstaPay على رقم الهاتف التالي:</p>
+                <div class="instapay-number">
+                  <strong>01148776034</strong>
+                  <button onclick="copyInstapay()"><i class="fas fa-copy"></i> نسخ</button>
+                </div>
+                <p class="instapay-note">تأكد من كتابة <strong>الاسم والرقم الجامعي</strong> في حقل الملاحظات داخل التحويل</p>
+              </div>
+            </div>
+
+            <div class="pay-btn-row">
+              <button class="btn-back" onclick="goToStep1()">
+                <i class="fas fa-arrow-right"></i>
+                رجوع
+              </button>
+              <button class="btn-pay" id="payBtn" onclick="processPayment()">
+                <i class="fas fa-lock"></i>
+                ادفع الآن
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirmation -->
+        <div class="pay-card hidden" id="step3">
+          <div class="pay-success">
+            <div class="success-animation">
+              <div class="success-circle">
+                <i class="fas fa-check"></i>
+              </div>
+            </div>
+            <h2>تم الدفع بنجاح!</h2>
+            <p>تهانينا، تم تسجيل دفعتك بنجاح وسيتم التواصل معك خلال 24 ساعة</p>
+            <div class="receipt-box" id="receiptBox">
+              <!-- Filled by JS -->
+            </div>
+            <div class="success-actions">
+              <button onclick="printReceipt()" class="btn-receipt">
+                <i class="fas fa-print"></i>
+                طباعة الإيصال
+              </button>
+              <a href="index.html" class="btn-home">
+                <i class="fas fa-home"></i>
+                العودة للرئيسية
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div class="pay-summary-col">
+        <div class="pay-summary-card" id="summaryCard">
+          <div class="summary-header">
+            <i class="fas fa-receipt"></i>
+            <h3>ملخص الطلب</h3>
+          </div>
+          <div class="summary-body">
+            <div class="summary-row" id="summaryActivity">
+              <span class="summary-label">الفعالية</span>
+              <span class="summary-value" id="summaryActivityName">—</span>
+            </div>
+            <div class="summary-row" id="summaryStudentRow">
+              <span class="summary-label">الطالب</span>
+              <span class="summary-value" id="summaryStudentName">—</span>
+            </div>
+            <div class="summary-row" id="summaryFacultyRow">
+              <span class="summary-label">الكلية</span>
+              <span class="summary-value" id="summaryFacultyName">—</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row summary-total">
+              <span>المبلغ الإجمالي</span>
+              <span id="summaryTotal">0 جنيه</span>
+            </div>
+          </div>
+          <div class="summary-badges">
+            <div class="badge-item"><i class="fas fa-shield-alt"></i> دفع آمن 100%</div>
+            <div class="badge-item"><i class="fab fa-cc-visa"></i> Visa</div>
+            <div class="badge-item"><i class="fab fa-cc-mastercard"></i> Mastercard</div>
+            <div class="badge-item"><i class="fas fa-bolt"></i> Fawry</div>
+          </div>
+        </div>
+
+        <!-- Help Box -->
+        <div class="pay-help-card">
+          <i class="fas fa-headset"></i>
+          <h4>تحتاج مساعدة؟</h4>
+          <p>تواصل معنا عبر واتساب أو الإيميل وسنرد خلال ساعات</p>
+          <a href="https://wa.me/+201234567890" target="_blank" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            تواصل على واتساب
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // ---- Helpers ----
+    function formatCard(el) {
+      let v = el.value.replace(/\D/g, '').substring(0, 16);
+      el.value = v.replace(/(.{4})/g, '$1 ').trim();
+    }
+    function formatExpiry(el) {
+      let v = el.value.replace(/\D/g, '').substring(0, 4);
+      if (v.length > 2) v = v.substring(0,2) + '/' + v.substring(2);
+      el.value = v;
+    }
+    function selectMethod(method) {
+      if (method !== 'instapay') {
+        showAlert('قريباً سوف يتاح. حالياً الدفع متاح فقط عبر InstaPay على رقم 01148776034.');
+        return;
+      }
+      document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.pay-method-form').forEach(f => f.classList.add('hidden'));
+      document.getElementById('tab' + method.charAt(0).toUpperCase() + method.slice(1)).classList.add('active');
+      document.getElementById('method' + method.charAt(0).toUpperCase() + method.slice(1)).classList.remove('hidden');
+    }
+    function copyInstapay() {
+      navigator.clipboard.writeText('01148776034').then(() => alert('تم نسخ الرقم!'));
+    }
+
+    // ---- Live Summary ----
+    document.getElementById('activitySelect').addEventListener('change', updateSummary);
+    document.getElementById('studentName').addEventListener('input', updateSummary);
+    document.getElementById('faculty').addEventListener('change', updateSummary);
+
+    function updateSummary() {
+      const sel = document.getElementById('activitySelect');
+      const price = sel.options[sel.selectedIndex]?.getAttribute('data-price') || '0';
+      const name = document.getElementById('studentName').value || '—';
+      const faculty = document.getElementById('faculty').value || '—';
+      document.getElementById('summaryActivityName').textContent = sel.value ? sel.options[sel.selectedIndex].text.split('—')[0].trim() : '—';
+      document.getElementById('summaryTotal').textContent = price + ' جنيه';
+      document.getElementById('summaryStudentName').textContent = name;
+      document.getElementById('summaryFacultyName').textContent = faculty;
+    }
+
+    // ---- Step Navigation ----
+    function goToStep2() {
+      const name = document.getElementById('studentName').value.trim();
+      const id = document.getElementById('studentId').value.trim();
+      const phone = document.getElementById('studentPhone').value.trim();
+      const activity = document.getElementById('activitySelect').value;
+      const faculty = document.getElementById('faculty').value;
+      const year = document.getElementById('year').value;
+      if (!name || !id || !phone || !activity || !faculty || !year) {
+        showAlert('يرجى ملء جميع الحقول المطلوبة *');
+        return;
+      }
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+      document.getElementById('step1Indicator').classList.remove('active');
+      document.getElementById('step2Indicator').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToStep1() {
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step1').classList.remove('hidden');
+      document.getElementById('step2Indicator').classList.remove('active');
+      document.getElementById('step1Indicator').classList.add('active');
+    }
+
+    async function processPayment() {
+      const btn = document.getElementById('payBtn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري حفظ البيانات...';
+      btn.disabled = true;
+
+      const payload = {
+        formType: 'payment',
+        studentName: document.getElementById('studentName').value,
+        studentId: document.getElementById('studentId').value,
+        faculty: document.getElementById('faculty').value,
+        year: document.getElementById('year').value,
+        phone: document.getElementById('studentPhone').value,
+        email: document.getElementById('studentEmail').value,
+        activity: document.getElementById('activitySelect').options[document.getElementById('activitySelect').selectedIndex].text,
+        amount: document.getElementById('summaryTotal').textContent,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        await fetch('https://ghalwashnn.app.n8n.cloud/webhook/contact-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch(e) {
+        // حتى لو فشل حفظ البيانات، لا نعرض صفحة "تم الدفع"
+      }
+
+      // لا نعرض صفحة تم الدفع إطلاقاً
+      btn.innerHTML = '<i class="fas fa-lock"></i> ادفع الآن';
+      btn.disabled = false;
+      showAlert('تم حفظ بياناتك. برجاء إتمام التحويل عبر InstaPay على رقم 01148776034، وسيتم تأكيد الدفع من قبل الاتحاد بعد مراجعة التحويل.');
+    }
+
+    function printReceipt() { window.print(); }
+
+    function showAlert(msg) {
+      const alert = document.createElement('div');
+      alert.style.cssText = 'position:fixed;top:1rem;right:50%;transform:translateX(50%);background:#ef4444;color:#fff;padding:1rem 2rem;border-radius:0.75rem;z-index:9999;font-size:1rem;box-shadow:0 4px 20px rgba(0,0,0,.3)';
+      alert.textContent = msg;
+      document.body.appendChild(alert);
+      setTimeout(() => alert.remove(), 3000);
+    }
+  </script>
+</body>
+</html>

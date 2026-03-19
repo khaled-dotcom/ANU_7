@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>مبادرة جيل تك – Jeel Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="مبادرة جيل تك من اتحاد طلاب جامعة الإسكندرية الأهلية تهدف إلى التحول الرقمي للشباب وتوعيتهم بأدوات الذكاء الاصطناعي." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* Specific styles for Jeel Tech page to ensure neat layouts */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+    .track-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease;
+    }
+    .track-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .track-header {
+      background: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .track-header i { font-size: 2rem; margin-bottom: 0.5rem; }
+    .track-header h3 { margin: 0; font-size: 1.2rem; }
+    .track-body {
+      padding: 1.5rem;
+    }
+    .track-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .track-body ul li {
+      margin-bottom: 0.5rem;
+      padding-right: 1.5rem;
+      position: relative;
+      color: var(--text-light);
+    }
+    .track-body ul li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 0;
+      color: var(--accent);
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    details.faq-item-static {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    details.faq-item-static summary {
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+    details.faq-item-static summary::-webkit-details-marker { display: none; }
+    details.faq-item-static summary::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      transition: transform 0.3s ease;
+    }
+    details.faq-item-static[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .faq-answer-static {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 5rem !important;
+        min-height: 60vh !important;
+      }
+      .hero-title {
+        font-size: 2rem !important;
+      }
+      .hero-subtitle {
+        font-size: 1rem !important;
+        padding: 0 1rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .feature-card {
+        padding: 1.5rem;
+        text-align: right;
+      }
+      .feature-icon {
+        font-size: 2rem;
+      }
+      .track-header h3 {
+        font-size: 1.1rem;
+      }
+      .track-body {
+        padding: 1rem;
+      }
+      details.faq-item-static summary {
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+      .faq-answer-static {
+        padding: 0 1rem 1rem 1rem;
+        font-size: 0.9rem;
+      }
+      .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      .hero-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="page">
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="index.html#home" class="navbar-brand">
+        <div class="navbar-logo">
+          <img src="assets/images/571217735_821161784183083_11823729130709533_n.jpg" alt="شعار الاتحاد" onerror="this.style.display='none';" />
+        </div>
+        <span class="navbar-title">اتحاد طلاب جامعة الإسكندرية الأهلية</span>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html#activities" class="nav-link">الأندية والأنشطة</a></li>
+        <li><a href="index.html#services" class="nav-link">خدمات الطلاب</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" style="min-height:70vh;padding-top:7rem;">
+      <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&h=1080&fit=crop" alt="Jeel Tech AI" class="hero-bg-img" />
+        <div class="hero-overlay" style="background: rgba(11, 37, 89, 0.85);"></div>
+      </div>
+      <div class="hero-content" data-aos="fade-up">
+        <div style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h1 class="hero-title">مبادرة جيل تك (Jeel Tech)</h1>
+        <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto 2rem auto;">
+          المبادرة الرسمية لاتحاد طلاب جامعة الإسكندرية الأهلية لدمج التكنولوجيا والذكاء الاصطناعي في المسار الأكاديمي والمهني للطلاب. نهدف لبناء جيل يقود التحول الرقمي بمهارة ووعي.
+        </p>
+        <div class="hero-cta">
+          <a href="#about" class="btn btn-primary">اكتشف المبادرة</a>
+          <a href="#join" class="btn btn-outline">انضم لرواد المستقبل</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About & Objectives Section -->
+    <section class="section section-about" id="about">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2 class="section-title">رؤيتنا وأهدافنا</h2>
+          <p class="section-subtitle">لماذا أطلقنا مبادرة جيل تك؟</p>
+        </div>
+        <div class="card" data-aos="fade-up" style="margin-bottom: 3rem;">
+          <p style="font-size: 1.1rem; line-height: 1.8; text-align: center;">
+            تأتي <strong>مبادرة جيل تك</strong> استجابة للتطور التكنولوجي المتسارع، حيث أصبح الإلمام بأدوات الذكاء الاصطناعي والمهارات الرقمية ضرورة حتمية وليس مجرد رفاهية. نسعى في اتحاد الطلاب إلى جسر الفجوة بين المناهج الأكاديمية ومتطلبات سوق العمل الرقمي الحديث.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+            <i class="fas fa-brain feature-icon"></i>
+            <h3>محو الأمية الآلية (AI Literacy)</h3>
+            <p>تمكين الطلاب من فهم كيفية عمل خوارزميات الذكاء الاصطناعي واستخدامها بشكل أخلاقي وفعّال في الحياة اليومية.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-chart-line feature-icon"></i>
+            <h3>التأهيل لسوق العمل</h3>
+            <p>تدريب عملي على أحدث الأدوات التي تطلبها الشركات محلياً وعالمياً، مما يرفع من تنافسية خريجي الجامعة.</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-lightbulb feature-icon"></i>
+            <h3>تعزيز الابتكار الأكاديمي</h3>
+            <p>استخدام تقنيات الذكاء الاصطناعي لتسهيل البحث العلمي، تحليل البيانات، وتسريع عملية التعلم الأكاديمي.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Tracks Section -->
+    <section class="section" style="background: var(--gray-50);">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2 class="section-title">مسارات المبادرة</h2>
+          <p class="section-subtitle">برامج تدريبية وورش عمل مصممة لتناسب مختلف التخصصات</p>
+        </div>
+        <div class="feature-grid">
+          <!-- Track 1 -->
+          <div class="track-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="track-header">
+              <i class="fas fa-keyboard"></i>
+              <h3>هندسة الأوامر (Prompt Engineering)</h3>
+            </div>
+            <div class="track-body">
+              <ul>
+                <li>كيفية التحدث الفعّال مع نماذج الذكاء الاصطناعي (مثل ChatGPT, Claude, Gemini).</li>
+                <li>صياغة الأوامر الدقيقة للحصول على نتائج احترافية.</li>
+                <li>تطبيقات هندسة الأوامر في كتابة المحتوى والبرمجة.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Track 2 -->
+          <div class="track-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="track-header" style="background: var(--accent); color: #1a1a1a;">
+              <i class="fas fa-book-reader" style="color: #1a1a1a;"></i>
+              <h3 style="color: #1a1a1a;">الذكاء الاصطناعي للباحثين</h3>
+            </div>
+            <div class="track-body">
+              <ul>
+                <li>أدوات البحث العلمي وتلخيص الأوراق البحثية.</li>
+                <li>تحليل البيانات المعقدة باستخدام أدوات الـ AI.</li>
+                <li>توليد الأفكار البحثية وتنظيم المراجع الأكاديمية.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Track 3 -->
+          <div class="track-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="track-header">
+              <i class="fas fa-magic"></i>
+              <h3>الذكاء الاصطناعي الإبداعي</h3>
+            </div>
+            <div class="track-body">
+              <ul>
+                <li>توليد الصور والتصاميم باستخدام Midjourney و DALL-E.</li>
+                <li>إنشاء وتعديل الفيديوهات والمقاطع الصوتية رقمياً.</li>
+                <li>تطبيقات الـ AI في العروض التقديمية (Presentations).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2 class="section-title">ماذا تستفيد من المبادرة؟</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card" style="display: flex; align-items: center; text-align: right; padding: 1.5rem;" data-aos="fade-left">
+            <i class="fas fa-certificate feature-icon" style="margin: 0 0 0 1rem; font-size: 2rem;"></i>
+            <div>
+              <h3>شهادات مشاركة</h3>
+              <p style="margin:0;">شهادات معتمدة من اتحاد الطلاب والجامعة عند إتمام المسارات التدريبية.</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; align-items: center; text-align: right; padding: 1.5rem;" data-aos="fade-left" data-aos-delay="100">
+            <i class="fas fa-users-cog feature-icon" style="margin: 0 0 0 1rem; font-size: 2rem;"></i>
+            <div>
+              <h3>توجيه وإرشاد (Mentorship)</h3>
+              <p style="margin:0;">تواصل مباشر مع خبراء ومختصين في مجالات التكنولوجيا والذكاء الاصطناعي.</p>
+            </div>
+          </div>
+          <div class="feature-card" style="display: flex; align-items: center; text-align: right; padding: 1.5rem;" data-aos="fade-left" data-aos-delay="200">
+            <i class="fas fa-network-wired feature-icon" style="margin: 0 0 0 1rem; font-size: 2rem;"></i>
+            <div>
+              <h3>مجتمع داعم</h3>
+              <p style="margin:0;">بناء شبكة علاقات مع زملاء شغوفين بالتكنولوجيا يشاركونك نفس الاهتمامات.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: var(--gray-50);">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2 class="section-title">الأسئلة الشائعة حول جيل تك</h2>
+        </div>
+        <div class="faq-container" data-aos="fade-up">
+          <details class="faq-item-static">
+            <summary>هل يشترط وجود خلفية برمجية للانضمام؟</summary>
+            <div class="faq-answer-static">
+              إطلاقاً. المبادرة مصممة لتبدأ من الصفر (Zero to Hero). هناك مسارات خاصة لا تتطلب كتابة سطر كود واحد، مثل هندسة الأوامر واستخدام أدوات الذكاء الاصطناعي الجاهزة.
+            </div>
+          </details>
+          <details class="faq-item-static">
+            <summary>هل المبادرة مقتصرة على كليات معينة مثل الحاسبات والهندسة؟</summary>
+            <div class="faq-answer-static">
+              المبادرة مفتوحة لجميع طلاب جامعة الإسكندرية الأهلية من مختلف الكليات العلمية والأدبية والطبية. الذكاء الاصطناعي الآن يخدم جميع التخصصات بلا استثناء.
+            </div>
+          </details>
+          <details class="faq-item-static">
+            <summary>كيف سيتم تقديم الورش؟ هل هي حضورية أم أونلاين؟</summary>
+            <div class="faq-answer-static">
+              سيتم تقديم النظام بشكل هجين (Hybrid). بعض الجلسات التأسيسية ستكون أونلاين لسهولة الحضور، بينما ورش العمل التطبيقية والمشاريع ستنظم حضورياً داخل الحرم الجامعي للتدريب العملي.
+            </div>
+          </details>
+          <details class="faq-item-static">
+            <summary>هل يمكنني مساعدة المبادرة والانضمام كمنظم أو مدرب؟</summary>
+            <div class="faq-answer-static">
+              بالتأكيد! نحن نرحب بالطلاب الذين يمتلكون خبرة سابقة في الذكاء الاصطناعي كمدربين، أو ذوي المهارات التنظيمية والإعلامية للمساعدة في إدارة المبادرة. يمكنك توضيح ذلك في استمارة التسجيل.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="section section-services" id="join" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2 class="section-title">انطلق معنا الآن</h2>
+          <p class="section-subtitle">المستقبل يكتبه من يتقن أدواته. كن جزءاً من جيل تك اليوم!</p>
+        </div>
+        <div class="card" data-aos="fade-up" style="max-width:600px;margin:0 auto;text-align:center; box-shadow: var(--shadow-xl); border: 2px solid var(--primary);">
+          <i class="fas fa-rocket" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+          <h3 style="margin-bottom: 1rem;">التسجيل متاح لكافة الطلاب</h3>
+          <p>
+            قم بزيارة قسم الخدمات الطلابية، اختر "تسجيل نشاط"، اكتب في الحقل المخصص "مبادرة جيل تك"، وسنتواصل معك بكافة التفاصيل ومواعيد اللقاء التعريفي.
+          </p>
+          <a href="index.html#services" class="btn btn-primary" style="margin-top:1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;">سجل الآن من هنا <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-logo">
+            <img src="assets/images/571217735_821161784183083_11823729130709533_n.jpg" alt="شعار" onerror="this.style.display='none'" />
+          </div>
+          <p>© اتحاد طلاب جامعة الإسكندرية الأهلية. جميع الحقوق محفوظة.</p>
+        </div>
+        <div class="footer-links">
+          <h4>روابط سريعة</h4>
+          <a href="index.html#home">الرئيسية</a>
+          <a href="index.html#activities">الأندية والأنشطة</a>
+          <a href="index.html#events">الفعاليات</a>
+        </div>
+        <div class="footer-contact">
+          <h4>تواصل</h4>
+          <a href="mailto:students.union@anu.edu.eg"><i class="fas fa-envelope"></i> students.union@anu.edu.eg</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    if (typeof AOS !== 'undefined') {
+      AOS.init({ duration: 600, offset: 80, once: true });
+    }
+  </script>
+</body>
+</html>

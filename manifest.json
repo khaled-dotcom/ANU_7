@@ -1,0 +1,44 @@
+{
+  "name": "اتحاد طلاب جامعة الإسكندرية الأهلية",
+  "short_name": "اتحاد الطلاب",
+  "description": "منصة الطالب الرسمية لاتحاد طلاب جامعة الإسكندرية الأهلية",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0b2559",
+  "theme_color": "#0b2559",
+  "lang": "ar",
+  "dir": "rtl",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/images/571217735_821161784183083_11823729130709533_n.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/571217735_821161784183083_11823729130709533_n.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الفعاليات",
+      "short_name": "فعاليات",
+      "description": "استعرض أحدث الفعاليات",
+      "url": "/index.html#events",
+      "icons": [{ "src": "assets/images/571217735_821161784183083_11823729130709533_n.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "دفع الرسوم",
+      "short_name": "الدفع",
+      "description": "دفع رسوم الأنشطة",
+      "url": "/payment.html",
+      "icons": [{ "src": "assets/images/571217735_821161784183083_11823729130709533_n.jpg", "sizes": "96x96" }]
+    }
+  ],
+  "categories": ["education", "social"],
+  "screenshots": []
+}
