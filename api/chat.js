@@ -23,10 +23,12 @@ module.exports = async function (req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'llama-3.1-8b-instant', // Upgraded model since llama3-8b-8192 was decommissioned
+        model: 'openai/gpt-oss-120b',
         messages: messages,
-        temperature: 0.7,
-        max_tokens: 500
+        temperature: 1,
+        max_tokens: 8192,
+        top_p: 1,
+        reasoning_effort: 'medium'
       })
     });
 
