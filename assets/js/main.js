@@ -1837,9 +1837,6 @@ function initChatbot() {
 
     try {
       // Call Groq API directly via config keys
-      const config = typeof CONFIG !== 'undefined' ? CONFIG : {};
-      if (!config.GROQ_API_KEY) throw new Error('No API key');
-
       const systemPrompt = currentLang === 'ar'
         ? 'أنت المساعد الافتراضي الرسمي لاتحاد طلاب جامعة الإسكندرية الأهلية. اتكلم مع الطلبة باللهجة المصرية البسيطة، بأسلوب رايق ومباشر. جاوب بإيجاز شديد: جملتين أو تلاتة بالكتير. ممنوع تماماً استخدام علامات النجمة (**) أو التنسيق المعقد، خلي كلامك نص عادي ومفهوم جداً.'
         : 'You are the official virtual assistant for the Alexandria National University Student Union. Keep answers extremely short (2-3 sentences max) and very clear. Speak in a friendly, conversational tone. IMPORTANT: Do NOT use asterisks (**) or markdown formatting. Use plain text only. Reply in the user\'s language.';
@@ -1849,19 +1846,10 @@ function initChatbot() {
         ...chatbotHistory.slice(-10)
       ];
 
-      const apiUrl = config.GROQ_API_URL || 'https://api.groq.com/openai/v1/chat/completions';
-      const res = await fetch(apiUrl, {
+      const res = await fetch('/api/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${config.GROQ_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: config.GROQ_MODEL || 'llama3-8b-8192',
-          messages,
-          temperature: 0.7,
-          max_tokens: 500
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages })
       });
 
       if (!res.ok) throw new Error(`API error: ${res.status}`);
