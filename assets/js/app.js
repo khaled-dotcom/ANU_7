@@ -985,9 +985,17 @@ function initChatbot() {
 }
 
 async function fetchGroq(userMessage) {
+  const websiteContext = JSON.stringify({
+    events: typeof eventsData !== 'undefined' ? eventsData : [],
+    clubs: typeof clubsData !== 'undefined' ? clubsData : [],
+    sports: typeof sportsData !== 'undefined' ? sportsData : [],
+    board: typeof boardMembersData !== 'undefined' ? boardMembersData : [],
+    faqs: typeof faqsData !== 'undefined' ? faqsData : []
+  }, (key, value) => (['image', 'icon', 'thumb', 'full'].includes(key) ? undefined : value));
+
   const systemPrompt = currentLang === 'ar'
-    ? 'أنت مساعد طلاب جامعة الإسكندرية الأهلية. أجب بإيجاز وبدون استخدام تنسيقات النجمة (*). أسألني عن الأنشطة، الفعاليات، الأندية، الفرق الرياضية وخدمات الطلاب. كن مفيداً وودوداً ومحترفاً.'
-    : 'You are the student assistant for Alexandria National University. Answer questions concisely without using asterisk formatting. Answer questions about activities, events, clubs, sports teams and student services. Be helpful, friendly and professional.';
+    ? `أنت المساعد الافتراضي الرسمي لاتحاد طلاب جامعة الإسكندرية الأهلية. أجب بإيجاز وبدون استخدام تنسيقات النجمة (*). أسألني عن الأنشطة، الفعاليات، الأندية، الفرق الرياضية وخدمات الطلاب. كن مفيداً وودوداً ومحترفاً. \nاستخدم البيانات الحصرية التالية عن الجامعة والاتحاد للإجابة عن أسئلة الطالب:\n${websiteContext}`
+    : `You are the official student assistant for Alexandria National University Student Union. Answer questions concisely without using asterisk formatting. Answer questions about activities, events, clubs, sports teams and student services. Be helpful, friendly and professional. \nUse the following website data to answer the student's questions accurately:\n${websiteContext}`;
 
   const messages = [
     { role: 'system', content: systemPrompt },

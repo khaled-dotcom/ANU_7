@@ -1837,9 +1837,17 @@ function initChatbot() {
 
     try {
       // Call Groq API directly via config keys
+      const websiteContext = JSON.stringify({
+        events: typeof eventsData !== 'undefined' ? eventsData : [],
+        clubs: typeof clubsData !== 'undefined' ? clubsData : [],
+        sports: typeof sportsData !== 'undefined' ? sportsData : [],
+        board: typeof boardMembersData !== 'undefined' ? boardMembersData : [],
+        faqs: typeof faqsData !== 'undefined' ? faqsData : []
+      }, (key, value) => (['image', 'icon', 'thumb', 'full'].includes(key) ? undefined : value));
+
       const systemPrompt = currentLang === 'ar'
-        ? 'أنت المساعد الافتراضي الرسمي لاتحاد طلاب جامعة الإسكندرية الأهلية. اتكلم مع الطلبة باللهجة المصرية البسيطة، بأسلوب رايق ومباشر. جاوب بإيجاز شديد: جملتين أو تلاتة بالكتير. ممنوع تماماً استخدام علامات النجمة (**) أو التنسيق المعقد، خلي كلامك نص عادي ومفهوم جداً.'
-        : 'You are the official virtual assistant for the Alexandria National University Student Union. Keep answers extremely short (2-3 sentences max) and very clear. Speak in a friendly, conversational tone. IMPORTANT: Do NOT use asterisks (**) or markdown formatting. Use plain text only. Reply in the user\'s language.';
+        ? `أنت المساعد الافتراضي الرسمي لاتحاد طلاب جامعة الإسكندرية الأهلية. اتكلم مع الطلبة باللهجة المصرية البسيطة، بأسلوب رايق ومباشر. جاوب بإيجاز شديد: جملتين أو تلاتة بالكتير. ممنوع تماماً استخدام علامات النجمة (**) أو التنسيق المعقد، خلي كلامك نص عادي ومفهوم جداً. \nاستخدم البيانات الحصرية التالية عن أنشطة الاتحاد وكلياته للإجابة على الطلاب:\n${websiteContext}`
+        : `You are the official virtual assistant for the Alexandria National University Student Union. Keep answers extremely short (2-3 sentences max) and very clear. Speak in a friendly, conversational tone. IMPORTANT: Do NOT use asterisks (**) or markdown formatting. Use plain text only. Reply in the user\'s language. \nUse the following website data to answer accurately:\n${websiteContext}`;
 
       const messages = [
         { role: 'system', content: systemPrompt },
