@@ -95,8 +95,8 @@ const i18n = {
     },
     // Gallery
     gallery: {
-      title: 'المعرض',
-      subtitle: 'لقطات من أنشطتنا وفعالياتنا',
+      title: 'المعرض والفعاليات السابقة',
+      subtitle: 'لقطات من أبرز أنشطتنا وفعالياتنا السابقة',
       close: 'إغلاق'
     },
     // Services
@@ -231,8 +231,8 @@ const i18n = {
       esportsDesc: 'Esports team and its participation in competitions.'
     },
     gallery: {
-      title: 'Gallery',
-      subtitle: 'Moments from our activities and events',
+      title: 'Gallery & Past Events',
+      subtitle: 'Highlights from our activities and past events',
       close: 'Close'
     },
     services: {
